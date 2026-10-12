@@ -1,0 +1,41 @@
+name: Check
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e ".[test]"
+      - run: python -m pytest -q
+      - name: Parse Windows launch scripts
+        shell: pwsh
+        run: |
+          Get-ChildItem scripts -Filter *.ps1 | ForEach-Object {
+            $parseErrors = $null
+            $parseTokens = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$parseTokens, [ref]$parseErrors) | Out-Null
+            if ($parseErrors) { throw ($parseErrors | Out-String) }
+          }
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/package.py
+      - name: Publish installer archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create "$GITHUB_REF_NAME"
+          dist/MCP-Word-setup.zip dist/MCP-Word-setup.zip.sha256
+          --title "MCP Word $GITHUB_REF_NAME"
+          --notes "Download MCP-Word-setup.zip, extract MCP Word, and run Start.vbs. Python, Ollama, libraries and all three models download into the folder after permission. See README.md for details."

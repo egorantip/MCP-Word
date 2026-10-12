@@ -1,0 +1,11 @@
+{
+  "python_version": "3.12.10",
+  "python_url": "https://www.python.org/ftp/python/3.12.10/python-3.12.10-embed-amd64.zip",
+  "python_md5": "fe8ef205f2e9c3ba44d0cf9954e1abd3",
+  "ollama_version": "0.35.1",
+  "ollama_release_api": "https://api.github.com/repos/ollama/ollama/releases/tags/v0.35.1",
+  "models": ["qwen3.5:2b", "qwen3.5:4b", "qwen3-vl:4b"],
+  "profile": "light",
+  "app_port": 8765,
+  "ollama_port": 11435
+}

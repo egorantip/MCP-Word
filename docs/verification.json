@@ -1,0 +1,61 @@
+{
+  "time": "2026-10-08T09:38:05.479466+00:00",
+  "portable_root": "C:\\Users\\User\\Desktop\\MCP Word\\portable-qa\\Перенос\\MCP Word",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "internet_required_for_checks": false,
+  "models": [
+    {
+      "model": "qwen3.5:2b",
+      "text_edit": "passed",
+      "preview": "passed",
+      "restore": "passed",
+      "seconds": 6.7,
+      "proposal": [
+        {
+          "op": "replace_text",
+          "target": "p1",
+          "before": "Превет, мир.",
+          "after": "Привет, мир."
+        }
+      ]
+    },
+    {
+      "model": "qwen3.5:4b",
+      "text_edit": "passed",
+      "preview": "passed",
+      "restore": "passed",
+      "seconds": 11.45,
+      "proposal": [
+        {
+          "op": "replace_text",
+          "target": "p1",
+          "before": "Превет, мир.",
+          "after": "Привет, мир."
+        }
+      ]
+    },
+    {
+      "model": "qwen3-vl:4b",
+      "vision": "passed",
+      "vision_seconds": 78.25,
+      "image_analysis": {
+        "image_id": "word/media/image1.png",
+        "model": "qwen3-vl:4b",
+        "description": "В верхней части изображения находится красный прямоугольник. Ниже него расположена надпись 'MCP WORD 42' черного цвета.",
+        "visible_text": "MCP WORD 42",
+        "suggested_caption": "Красный прямоугольник с надписью MCP WORD 42",
+        "uncertainty": ""
+      }
+    }
+  ],
+  "status": "passed",
+  "http_mcp": "passed",
+  "http_ui": "passed",
+  "download": "passed",
+  "image_preview": "passed",
+  "model_unloading": "passed",
+  "formatting": "passed",
+  "actual_ollama_version": {
+    "version": "0.35.1"
+  }
+}

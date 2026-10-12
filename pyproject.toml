@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "offline-word-mcp"
+version = "0.1.0"
+description = "Local DOCX editing with MCP and Ollama"
+requires-python = ">=3.11"
+dependencies = [
+  "mcp>=1.28,<2",
+  "python-docx>=1.2,<2",
+  "httpx>=0.28,<1",
+  "Pillow>=11,<13",
+  "pydantic>=2.10,<3",
+  "uvicorn>=0.34,<1",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10"]
+
+[project.scripts]
+word-mcp = "word_mcp.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["word_mcp*"]
+
+[tool.setuptools.package-data]
+word_mcp = ["static/*.html"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

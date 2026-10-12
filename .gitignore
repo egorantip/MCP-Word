@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+documents/
+build/
+dist/
+*.log
+.word-mcp-token
+runtime/
+models/
+logs/
+portable-qa/
+mcp-config.local.json
